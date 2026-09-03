@@ -1,0 +1,16 @@
+﻿<Window x:Class="HappyBird.WelcomeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HappyBird"
+        mc:Ignorable="d"
+        Title="Flappy Bird - Welcome" Height="450" Width="250">
+    <Grid>
+        <Image Name="flappyBird" Source="C:\Users\sazimma\Downloads\images.png" Height="100" Width="100" RenderTransformOrigin="0.377,-0.208" Margin="75,20,75,314"/>
+        <TextBlock FontWeight="Bold"  FontSize="30" HorizontalAlignment="Center" Margin="0,97,0,0" TextWrapping="Wrap" Text="Flappy Bird" VerticalAlignment="Top"/>
+        <TextBlock FontWeight="Bold"  FontSize="20" HorizontalAlignment="Center" Margin="0,141,0,0" TextWrapping="Wrap" Text="Sazima Mateo" VerticalAlignment="Top"/>
+        <TextBlock FontWeight="Bold"  FontSize="15" HorizontalAlignment="Center" Margin="0,163,0,0" TextWrapping="Wrap" Text="I3.C" VerticalAlignment="Top"/>
+        <Button Content="Play" HorizontalAlignment="Center" VerticalAlignment="Center" Height="32" Width="102" Click="Button_Click"/>
+    </Grid>
+</Window>

@@ -1,0 +1,21 @@
+﻿<Window x:Class="HappyBird.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HappyBird"
+        mc:Ignorable="d"
+        Title="Flappy - Game" Height="476" Width="250"
+        KeyDown="txtblk_StartText_KeyDown"
+        MouseLeftButtonDown="playscreen_MouseLeftButtonDown" 
+        MouseLeftButtonUp="playscreen_MouseLeftButtonUp">
+    <Grid Name="grid">
+        <TextBlock Name="txtBlck_Score" HorizontalAlignment="Left" Margin="191,408,0,0" TextWrapping="Wrap" Text="Score: " VerticalAlignment="Top"/>
+        <Button Name="btn_Resume" Content="⬛" HorizontalAlignment="Left" Margin="10,406,0,0" VerticalAlignment="Top" Width="20" Height="20" Click="btn_Resume_Click"/>
+        <Rectangle Name="playscreen" HorizontalAlignment="Center" Height="381" Margin="0,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="230" />
+        <TextBlock Name="txtblk_StartText" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,342,0,0" TextWrapping="Wrap" Text="PRESS ANY KEY TO START" VerticalAlignment="Top"/>
+        <Image Name="img_PlayerCharacter" Source="C:\Users\sazimma\Downloads\flappy-bird-resized.png" HorizontalAlignment="Left" Height="33" Margin="20,185,0,0" VerticalAlignment="Top" Width="43"/>
+
+
+    </Grid>
+</Window>
