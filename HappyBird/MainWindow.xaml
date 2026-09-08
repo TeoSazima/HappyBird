@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:HappyBird"
         mc:Ignorable="d"
         Title="Flappy - Game" Height="476" Width="250"
+        ResizeMode="NoResize"
+        
         KeyDown="txtblk_StartText_KeyDown"
         >
         
