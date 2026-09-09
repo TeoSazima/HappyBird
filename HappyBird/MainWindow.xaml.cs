@@ -119,10 +119,31 @@ namespace HappyBird
             pipeTop.Width = pipeWidthInPixels;
             pipeTop.Fill = Brushes.Chartreuse;
             pipeTop.HorizontalAlignment = HorizontalAlignment.Right;
-            pipeTop.Margin = new Thickness(0, 10, 1, 0);
+            pipeTop.Margin = new Thickness(0, 10, 1 - pipeWidthInPixels, 0);
             pipeTop.Stroke = Brushes.Black;
             pipeTop.VerticalAlignment = VerticalAlignment.Top;
 
+            
+            var pipeTopWallHolder = new Rectangle();
+            pipeTopWallHolder.Height = 5;
+            pipeTopWallHolder.Width = pipeWidthInPixels + 5;
+            pipeTopWallHolder.Fill = Brushes.Chartreuse;
+            pipeTopWallHolder.HorizontalAlignment = HorizontalAlignment.Right;
+            pipeTopWallHolder.Margin = new Thickness(0, 10, -2 - pipeWidthInPixels, 0);
+            pipeTopWallHolder.Stroke = Brushes.Black;
+            pipeTopWallHolder.VerticalAlignment = VerticalAlignment.Top;
+            
+            var pipeTopEntry = new Rectangle();
+            pipeTopEntry.Height = 5;
+            pipeTopEntry.Width = pipeWidthInPixels + 5;
+            pipeTopEntry.Fill = Brushes.Chartreuse;
+            pipeTopEntry.HorizontalAlignment = HorizontalAlignment.Right;
+            pipeTopEntry.Margin = new Thickness(0, 10 + pipeTop.Height, -2 -  pipeWidthInPixels, 0);
+            pipeTopEntry.Stroke = Brushes.Black;
+            pipeTopEntry.VerticalAlignment = VerticalAlignment.Top;
+            
+            
+            
             int pipeBottomLenght = 0;
 
             if (x == 9 || x == 0 && isOnePipe != true)
@@ -141,18 +162,51 @@ namespace HappyBird
                 pipeBottom.Width = pipeWidthInPixels;
                 pipeBottom.Fill = Brushes.Chartreuse;
                 pipeBottom.HorizontalAlignment = HorizontalAlignment.Right;
-                pipeBottom.Margin = new Thickness(0, 0, 1, 47);
+                pipeBottom.Margin = new Thickness(0, 0, 1- pipeWidthInPixels, 47);
                 pipeBottom.Stroke = Brushes.Black;
                 pipeBottom.VerticalAlignment = VerticalAlignment.Bottom;
                 
+                var pipeBottomWallHolder = new Rectangle();
+                pipeBottomWallHolder.Height = 5;
+                pipeBottomWallHolder.Width = pipeWidthInPixels + 5;
+                pipeBottomWallHolder.Fill = Brushes.Chartreuse;
+                pipeBottomWallHolder.HorizontalAlignment = HorizontalAlignment.Right;
+                pipeBottomWallHolder.Margin = new Thickness(0, 0, -2 - pipeWidthInPixels, 47);
+                pipeBottomWallHolder.Stroke = Brushes.Black;
+                pipeBottomWallHolder.VerticalAlignment = VerticalAlignment.Bottom;
+            
+                var pipeBottomEntry = new Rectangle();
+                pipeBottomEntry.Height = 5;
+                pipeBottomEntry.Width = pipeWidthInPixels + 5;
+                pipeBottomEntry.Fill = Brushes.Chartreuse;
+                pipeBottomEntry.HorizontalAlignment = HorizontalAlignment.Right;
+                pipeBottomEntry.Margin = new Thickness(0, 0 , -2 - pipeWidthInPixels, 47+ pipeBottom.Height);
+                pipeBottomEntry.Stroke = Brushes.Black;
+                pipeBottomEntry.VerticalAlignment = VerticalAlignment.Bottom;
+                
                 grid.Children.Add(pipeBottom);
+                grid.Children.Add(pipeBottomEntry);
+                grid.Children.Add(pipeBottomWallHolder);
+                
+                pipes.Add(pipeBottomEntry);
+                pipes.Add(pipeBottomWallHolder);
                 pipes.Add(pipeBottom);
             }
 
-
+            // PIPE TOP
             grid.Children.Add(pipeTop);
+            grid.Children.Add(pipeTopWallHolder);
+            grid.Children.Add(pipeTopEntry);
+            
+            
             pipes.Add(pipeTop);
+            pipes.Add(pipeTopWallHolder);
+            pipes.Add(pipeTopEntry);
 
+            
+            
+            
+            
             
 
 

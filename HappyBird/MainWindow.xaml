@@ -14,7 +14,7 @@
     <Grid Name="grid">
         <TextBlock Name="txtBlck_Score" HorizontalAlignment="Left" Margin="191,408,0,0" TextWrapping="Wrap" Text="Score: " VerticalAlignment="Top"/>
         <Button Name="btn_Resume" Content="⬛" HorizontalAlignment="Left" Margin="10,406,0,0" VerticalAlignment="Top" Width="20" Height="20" Click="btn_Resume_Click"/>
-        <Rectangle Name="playscreen" HorizontalAlignment="Center" Height="380" Margin="0,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="230" />
+        <Rectangle Name="playscreen" HorizontalAlignment="Center" Height="380" Margin="0,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="235" />
         <TextBlock Name="txtblk_StartText" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,342,0,0" TextWrapping="Wrap" Text="PRESS ANY KEY TO START" VerticalAlignment="Top"/>
         <Image Name="img_PlayerCharacter" Source="source/images/Bird/yellow/tile000.png" HorizontalAlignment="Left" Height="33" Margin="20,185,0,0" VerticalAlignment="Top" Width="43"/>
 
