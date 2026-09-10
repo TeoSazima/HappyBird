@@ -21,6 +21,9 @@ namespace HappyBird
 {
     public partial class MainWindow : Window
     {
+        // DEBUG
+        const bool debug = true;
+
         // CONSTANTS
         private const int pipeWidthInPixels = 30;
         private const int pieceOfPipeLenghtInPixels = 38;
@@ -43,7 +46,7 @@ namespace HappyBird
         List<BitmapImage> BirdAnimationSet = new List<BitmapImage>();
 
         // PLAYER HITBOX FOR CHECKING COLLISIONS
-        Rect playerHitbox = new Rect(185, 20,16,16);
+        Rect playerHitbox = new Rect(20, 185, 16,16);
         
         
 
@@ -239,6 +242,7 @@ namespace HappyBird
                 
                 // RECT HITBOX PIPE BOTTOM
                 pipesHitboxes.Add(pipeBottomHitbox);
+                
             }
 
             // RECTANGLE PIPE TOP
@@ -251,15 +255,8 @@ namespace HappyBird
             pipes.Add(pipeTopWallHolder);
             pipes.Add(pipeTopEntry);
 
-            
-            
-            
-            
-            
 
-
-
-        }
+      }
 
         private void AnimationManager(object sender, EventArgs e)
         {
@@ -314,6 +311,18 @@ namespace HappyBird
                 pipe.Margin = new Thickness(pipe.Margin.Left, pipe.Margin.Top, pipe.Margin.Right + 1, pipe.Margin.Bottom);
             }
 
+            for (int i = 0; i < pipesHitboxes.Count; i++) 
+            {
+                Rect tempRect = pipesHitboxes[i];
+                
+                tempRect.X -= 1;
+                pipesHitboxes[i] = tempRect;
+            }
+
+
+
+
+
             #endregion
             #region BirdRender
 
@@ -343,9 +352,29 @@ namespace HappyBird
                 }
             }
             #endregion
+            #region DEBUG
+            
+            if (debug)
+            {
+                foreach(var pipeHitbox in pipesHitboxes)
+                {
+                    var HitboxDebug = new Rectangle();
+                    HitboxDebug.Height = pipeHitbox.Height;
+                    HitboxDebug.Width = pipeHitbox.Width;
+                    HitboxDebug.Fill = Brushes.Red;
+                    HitboxDebug.HorizontalAlignment = HorizontalAlignment.Right;
+                    HitboxDebug.Margin = new Thickness(0, 0, 250 - pipeHitbox.X, 10 + pipeHitbox.Y);
+                    HitboxDebug.Stroke = Brushes.Black;
+                    HitboxDebug.VerticalAlignment = VerticalAlignment.Top;
+                    grid.Children.Add(HitboxDebug);
+                    pipes.Add(HitboxDebug);
+                }
+
+            }
+            #endregion
         }
 
-        
+
 
         private void txtblk_StartText_KeyDown(object sender, KeyEventArgs e)
         {
