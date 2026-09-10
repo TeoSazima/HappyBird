@@ -19,53 +19,88 @@ using System.Windows.Threading;
 
 namespace HappyBird
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         // CONSTANTS
         private const int pipeWidthInPixels = 30;
         private const int pieceOfPipeLenghtInPixels = 38;
 
+        // LISTS OF PIPES
         List<Rectangle> pipes = new List<Rectangle>();
+        List<Rect> pipesHitboxes = new List<Rect>();
 
+        // GAME BOOLENANS FOR LOGIC
         public bool paused = true;
         public bool gameStarted = false;
         public bool isMousePressed = false;
-
-
-        //BIRD PROPERITIES
         public bool stillalive = true;
+        
+        // ANIMATION VARIABLES
+        private int birdCurrentFrame = 0; // 0-3 
+        private int birdAnimationTick = 0;
+        
+        // BIRD ANIMATION SET
+        List<BitmapImage> BirdAnimationSet = new List<BitmapImage>();
 
-        //MAX 10  BIGGEST
+        // PLAYER HITBOX FOR CHECKING COLLISIONS
+        Rect playerHitbox = new Rect(185, 20,16,16);
+        
+        
+
+        //MAX 10  HIGHEST
         //MIN 385 LOWEST
-        //MID 185
-        int height = 185;
+        //MID 185 CENTER
+        int heightOfThePlayer = 185;
 
+        
+        // TIMERS FOR TICKS
         DispatcherTimer gameTimer = new DispatcherTimer();
         DispatcherTimer newPipeGenerate = new DispatcherTimer();
 
 
 
-        public
-            MainWindow()
+        public MainWindow()
         {
 
             InitializeComponent();
+            
+
 
             gameTimer.Interval = TimeSpan.FromMilliseconds(1.6);
             gameTimer.Tick += DrawScreen;
             gameTimer.Tick  += AreaseObjects;
+            gameTimer.Tick += AnimationManager;
+            gameTimer.Tick  += CollisionDetect;
 
             newPipeGenerate.Interval = TimeSpan.FromSeconds(4);
             newPipeGenerate.Tick += NewPipe;
 
 
-
+    
 
         }
 
+        private void CollisionDetect(object sender, EventArgs e)
+        {
+             
+            foreach (var pipesHitbox in pipesHitboxes)
+            {
+                var HitboxDebug = new Rectangle();
+                
+                if (pipesHitbox.IntersectsWith(playerHitbox))
+                {
+                   
+                    
+                    // KONEC HRY
+                    ScoreWindow scoreWindow = new ScoreWindow();
+                    scoreWindow.ShowDialog();
+                    this.Close();
+                    
+                }
+                
+            }
+        }
+        
         private void NewPipe(object sender, EventArgs e)
         {
             // 1 ELEMENT JE 23px
@@ -157,6 +192,8 @@ namespace HappyBird
 
             if (pipeBottomLenght != 0)
             {
+                
+                
                 var pipeBottom = new Rectangle();
                 pipeBottom.Height = pipeBottomLenght * pieceOfPipeLenghtInPixels;
                 pipeBottom.Width = pipeWidthInPixels;
@@ -165,6 +202,12 @@ namespace HappyBird
                 pipeBottom.Margin = new Thickness(0, 0, 1- pipeWidthInPixels, 47);
                 pipeBottom.Stroke = Brushes.Black;
                 pipeBottom.VerticalAlignment = VerticalAlignment.Bottom;
+
+
+                const double xPos = 250 - (1 + pipeWidthInPixels);
+                const double yPos = 10;
+                var pipeBottomHitbox = new Rect(xPos, yPos, pipeWidthInPixels, pipeBottomLenght * pieceOfPipeLenghtInPixels);
+                
                 
                 var pipeBottomWallHolder = new Rectangle();
                 pipeBottomWallHolder.Height = 5;
@@ -184,6 +227,7 @@ namespace HappyBird
                 pipeBottomEntry.Stroke = Brushes.Black;
                 pipeBottomEntry.VerticalAlignment = VerticalAlignment.Bottom;
                 
+                // RECTANGLE PIPE BOTTOM
                 grid.Children.Add(pipeBottom);
                 grid.Children.Add(pipeBottomEntry);
                 grid.Children.Add(pipeBottomWallHolder);
@@ -191,9 +235,13 @@ namespace HappyBird
                 pipes.Add(pipeBottomEntry);
                 pipes.Add(pipeBottomWallHolder);
                 pipes.Add(pipeBottom);
+                
+                
+                // RECT HITBOX PIPE BOTTOM
+                pipesHitboxes.Add(pipeBottomHitbox);
             }
 
-            // PIPE TOP
+            // RECTANGLE PIPE TOP
             grid.Children.Add(pipeTop);
             grid.Children.Add(pipeTopWallHolder);
             grid.Children.Add(pipeTopEntry);
@@ -213,6 +261,27 @@ namespace HappyBird
 
         }
 
+        private void AnimationManager(object sender, EventArgs e)
+        {
+            // BIRD SECTION
+            birdAnimationTick++;
+            if (birdAnimationTick > 10)
+            {
+                if (birdCurrentFrame == 3)
+                {
+                    birdCurrentFrame = 0;
+                }
+                else
+                    birdCurrentFrame++;
+
+                img_PlayerCharacter.Source = new ImageSourceConverter().ConvertFromString("../../source/images/Bird/yellow/tile00" + birdCurrentFrame.ToString() + ".png") as ImageSource;
+                birdAnimationTick = 0;
+
+            }
+
+
+        }
+        
         private void AreaseObjects(object sender, EventArgs e)
         {
             #region PIPES CLEANUP
@@ -256,18 +325,21 @@ namespace HappyBird
             
             if (isMousePressed)
             {
-                if(height > 10) 
+                if(heightOfThePlayer > 10) 
                 {
-                    height -= 2;
-                    img_PlayerCharacter.Margin = new Thickness(20, height, 0, 0);
+                    heightOfThePlayer -= 2;
+                    img_PlayerCharacter.Margin = new Thickness(20, heightOfThePlayer, 0, 0);
+                    playerHitbox.Y -= 2;
                 }
             }
             else
             {
-                if(height < 358) 
+                if(heightOfThePlayer < 358) 
                 {
-                    height += 2; 
-                    img_PlayerCharacter.Margin = new Thickness(20, height, 0, 0);
+                    heightOfThePlayer += 2; 
+                    img_PlayerCharacter.Margin = new Thickness(20, heightOfThePlayer, 0, 0);
+                    playerHitbox.Y += 2;
+                    
                 }
             }
             #endregion

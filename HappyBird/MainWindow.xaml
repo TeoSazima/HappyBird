@@ -19,7 +19,9 @@
         <Image Name="img_PlayerCharacter" Source="source/images/Bird/yellow/tile000.png" HorizontalAlignment="Left" Height="33" Margin="20,185,0,0" VerticalAlignment="Top" Width="43"/>
 
         
-       
+        <Canvas Name="Canvas" HorizontalAlignment="Center" Height="380" Margin="0,10,0,0" VerticalAlignment="Top" Width="235">
+        
+        </Canvas>
         
 
 
