@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pipe.cs" />
+    <Compile Include="player.cs" />
     <Compile Include="ScoreWindow.xaml.cs">
       <DependentUpon>ScoreWindow.xaml</DependentUpon>
     </Compile>
