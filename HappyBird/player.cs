@@ -9,8 +9,8 @@ namespace HappyBird
 {
     public static class Player
     {
-        public static int Score = 20;
-        public static Rect BirdHitBox = new Rect(); 
+        public static int Score = 30;
+        public static Rect PlayerHitbox;
         
         private static int _birdCurrentFrame = 0; // 0-3 
         private static int _birdAnimationTick = 0;
@@ -21,7 +21,8 @@ namespace HappyBird
         
         public static void Initialize(Image birdCharacter)
         {
-            PlayerCharacter =  birdCharacter; 
+            PlayerCharacter =  birdCharacter;
+            PlayerHitbox = new Rect();
         } 
         public static void Animation(object sender, EventArgs e)
         {
@@ -44,16 +45,21 @@ namespace HappyBird
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed)
             {
-                if(PlayerCharacter.Margin.Top > 1)
+                if(PlayerCharacter.Margin.Top > 5)
                     PlayerCharacter.Margin = new Thickness(20, PlayerCharacter.Margin.Top - 2, 0,0);
+                
 
             }
             else
             {
-                if(PlayerCharacter.Margin.Top < 386-50)
+                if(PlayerCharacter.Margin.Top < 375)
                     PlayerCharacter.Margin = new Thickness(20, PlayerCharacter.Margin.Top + 2, 0,0);
             }
+            
+            PlayerHitbox = new Rect(PlayerCharacter.Margin.Left, PlayerCharacter.Margin.Top, PlayerCharacter.Width - 30, PlayerCharacter.Height - 2);
+            
+
         }
-        
+
     }
 }

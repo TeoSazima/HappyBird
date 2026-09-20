@@ -26,15 +26,11 @@ namespace HappyBird
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            ScoreWindow scoreWindow = new ScoreWindow();
+            var mainWindow = new MainWindow();
+            Application.Current.MainWindow = mainWindow;
             
             this.Close();
-            mainWindow.ShowDialog();
-
-
-
-
+            mainWindow.Show();
 
         }
     }

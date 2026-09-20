@@ -26,7 +26,7 @@ namespace HappyBird
         public bool paused = true;
         public bool gameStarted = false;
         public bool isMousePressed = false;
-        public bool stillalive = true;
+        public bool StillAlive = true;
 
         //MAX 10  HIGHEST
         //MIN 385 LOWEST
@@ -48,12 +48,43 @@ namespace HappyBird
             gameTimer.Interval = TimeSpan.FromMilliseconds(1.6); // 60FPS
             gameTimer.Tick += Pipe.Move;
             gameTimer.Tick += Pipe.CheckChangeDifficulty;
-            gameTimer.Tick += Pipe.CollisionDetect;
             gameTimer.Tick += Pipe.ChangeHeight;
             
             gameTimer.Tick += Player.Animation;
             gameTimer.Tick += Player.Move;
+            
+            gameTimer.Tick += CollisionDetect;
         }
+
+        public void CollisionDetect(object sender, EventArgs e)
+        {
+            bool shouldEndTheGame = false;
+            
+            foreach (var pipe in Pipe.AllPartsOfPipes)
+            {
+                Rect pipeHitbox = new Rect(Canvas.GetLeft(pipe), Canvas.GetTop(pipe), pipe.Width, pipe.Height);
+
+                if (pipeHitbox.IntersectsWith(Player.PlayerHitbox))
+                {
+                    shouldEndTheGame = true;
+                    break;
+                }
+            }
+
+            if (shouldEndTheGame)
+            {
+                gameTimer.Stop();
+                
+                Window scoreWindow = new ScoreWindow();
+                scoreWindow.Show();
+
+                Close();
+            }
+            
+        }
+        
+        
+        
         
         private void txtblk_StartText_KeyDown(object sender, KeyEventArgs e)
         {

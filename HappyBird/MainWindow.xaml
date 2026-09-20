@@ -5,21 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HappyBird"
         mc:Ignorable="d"
-        Title="Flappy Bird - Game" Width="266" Height="489"
+        Title="Flappy Bird - Game" Width="300" Height="500"
         ResizeMode="NoResize"
         
         KeyDown="txtblk_StartText_KeyDown"
         >
         
     <Grid Name="grid">
-        <TextBlock Name="txtBlck_Score" HorizontalAlignment="Left" Margin="191,408,0,0" TextWrapping="Wrap" Text="Score: " VerticalAlignment="Top"/>
-        <Button Name="btn_Resume" Content="⬛" HorizontalAlignment="Left" Margin="10,406,0,0" VerticalAlignment="Top" Width="20" Height="20" Click="btn_Resume_Click"/>
-        <Rectangle Name="playscreenOutline" Height="380" Width="250" Margin="0,0,0,70"  Stroke="Black" />
+        <TextBlock Name="txtBlck_Score" HorizontalAlignment="Left" Margin="190,420,0,0" TextWrapping="Wrap" Text="Score: " VerticalAlignment="Top"/>
+        <Button Name="btn_Resume" Content="⬛" HorizontalAlignment="Left" Margin="15,420,0,0" VerticalAlignment="Top" Width="20" Height="20" Click="btn_Resume_Click"/>
         <TextBlock Name="txtblk_StartText" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,342,0,0" TextWrapping="Wrap" Text="PRESS ANY KEY TO START" VerticalAlignment="Top"/>
         <Image Name="img_PlayerCharacter" Source="source/images/Bird/yellow/tile000.png" HorizontalAlignment="Left" Height="33" Margin="20,185,0,0" VerticalAlignment="Top" Width="43"/>
 
 
-        <Border BorderBrush="Black" BorderThickness="5" Height="380" Width="250" Margin="0,0,0,70">
+        <Border BorderBrush="Black" BorderThickness="5" Height="410" Width="260" Margin="0,0,0,50">
             <Canvas Name="canvas_GameCanvas" ClipToBounds="True">
             
             </Canvas>
