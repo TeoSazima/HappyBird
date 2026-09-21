@@ -25,17 +25,9 @@ namespace HappyBird
         // GAME BOOLENANS FOR LOGIC
         public bool paused = true;
         public bool gameStarted = false;
-        public bool isMousePressed = false;
-        public bool StillAlive = true;
-
-        //MAX 10  HIGHEST
-        //MIN 385 LOWEST
-        //MID 185 CENTER
-        int heightOfThePlayer = 185;
-
         
         // TIMERS FOR TICKS
-        DispatcherTimer gameTimer = new DispatcherTimer();
+        DispatcherTimer _gameTimer = new DispatcherTimer();
 
         public MainWindow()
         {
@@ -45,15 +37,17 @@ namespace HappyBird
             Player.Initialize(img_PlayerCharacter);
             Pipe.Initialize(canvas_GameCanvas);
 
-            gameTimer.Interval = TimeSpan.FromMilliseconds(1.6); // 60FPS
-            gameTimer.Tick += Pipe.Move;
-            gameTimer.Tick += Pipe.CheckChangeDifficulty;
-            gameTimer.Tick += Pipe.ChangeHeight;
+            _gameTimer.Interval = TimeSpan.FromMilliseconds(1.6); // 60FPS
+            _gameTimer.Tick += Pipe.Move;
+            _gameTimer.Tick += Pipe.CheckChangeDifficulty;
+            _gameTimer.Tick += Pipe.ChangeHeight;
+            _gameTimer.Tick += Pipe.CheckScoring;
             
-            gameTimer.Tick += Player.Animation;
-            gameTimer.Tick += Player.Move;
+            _gameTimer.Tick += Player.Animation;
+            _gameTimer.Tick += Player.Move;
             
-            gameTimer.Tick += CollisionDetect;
+            _gameTimer.Tick += CollisionDetect;
+            _gameTimer.Tick += UpdateScore;
         }
 
         public void CollisionDetect(object sender, EventArgs e)
@@ -73,7 +67,7 @@ namespace HappyBird
 
             if (shouldEndTheGame)
             {
-                gameTimer.Stop();
+                _gameTimer.Stop();
                 
                 Window scoreWindow = new ScoreWindow();
                 scoreWindow.Show();
@@ -83,7 +77,10 @@ namespace HappyBird
             
         }
         
-        
+        public void UpdateScore(object sender, EventArgs e)
+        {
+            txtBlck_Score.Text = $"Score: {Player.Score}";
+        }
         
         
         private void txtblk_StartText_KeyDown(object sender, KeyEventArgs e)
@@ -95,7 +92,7 @@ namespace HappyBird
                 gameStarted = true;
                 txtblk_StartText.Visibility = Visibility.Hidden;
                 
-                gameTimer.Start();
+                _gameTimer.Start();
             }
         }
         private void btn_Resume_Click(object sender, RoutedEventArgs e)
@@ -105,14 +102,14 @@ namespace HappyBird
                 btn_Resume.Content = "⬛";
                 paused = !paused;
                 
-                gameTimer.Start();
+                _gameTimer.Start();
             }
             else
             {
                 btn_Resume.Content = "▶︎";
                 paused = !paused;
                 
-                gameTimer.Stop();
+                _gameTimer.Stop();
             }
         }
     }

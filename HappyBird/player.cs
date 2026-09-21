@@ -9,7 +9,7 @@ namespace HappyBird
 {
     public static class Player
     {
-        public static int Score = 30;
+        public static int Score = 0;
         public static Rect PlayerHitbox;
         
         private static int _birdCurrentFrame = 0; // 0-3 

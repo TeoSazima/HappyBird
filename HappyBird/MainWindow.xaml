@@ -12,7 +12,7 @@
         >
         
     <Grid Name="grid">
-        <TextBlock Name="txtBlck_Score" HorizontalAlignment="Left" Margin="190,420,0,0" TextWrapping="Wrap" Text="Score: " VerticalAlignment="Top"/>
+        <TextBlock Name="txtBlck_Score" HorizontalAlignment="Left" Margin="190,420,0,0" TextWrapping="Wrap" Text="Score: 0" VerticalAlignment="Top"/>
         <Button Name="btn_Resume" Content="⬛" HorizontalAlignment="Left" Margin="15,420,0,0" VerticalAlignment="Top" Width="20" Height="20" Click="btn_Resume_Click"/>
         <TextBlock Name="txtblk_StartText" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,342,0,0" TextWrapping="Wrap" Text="PRESS ANY KEY TO START" VerticalAlignment="Top"/>
         <Image Name="img_PlayerCharacter" Source="source/images/Bird/yellow/tile000.png" HorizontalAlignment="Left" Height="33" Margin="20,185,0,0" VerticalAlignment="Top" Width="43"/>

@@ -20,6 +20,8 @@ namespace HappyBird
 
         public static List<Rectangle> AllPartsOfPipes = new List<Rectangle>();
 
+        private static bool IsCurrentlyFlyingTrough = false;
+        
         
         // 1 - EASY
         // 1.2 - MEDIUM
@@ -42,6 +44,10 @@ namespace HappyBird
         private static Rectangle _pipeBottom = new Rectangle();
         private static Rectangle _pipeBottomWallHolder = new Rectangle();
         private static Rectangle _pipeBottomExit = new Rectangle();
+        
+        
+        // SCORE HITBOX
+        private static Rectangle _scoreHitbox = new Rectangle();
         
 
         // INITIALIZACE
@@ -109,9 +115,34 @@ namespace HappyBird
                 AllPartsOfPipes.Add(_pipeBottomExit);
             
             #endregion
+            
+            _scoreHitbox.Width = PipeWidthInPixels + 5;
+            _scoreHitbox.Height = 50;
+            _scoreHitbox.Fill = Brushes.Transparent;
+            
+            canvas.Children.Add(_scoreHitbox);
+
+
         }
-        
-        
+
+        public static void CheckScoring(object sender, EventArgs e)
+        {
+            Rect scoreHitbox = new Rect(Canvas.GetLeft(_scoreHitbox), Canvas.GetTop(_scoreHitbox), PipeWidthInPixels, 400);
+            
+            if (!IsCurrentlyFlyingTrough && Player.PlayerHitbox.IntersectsWith(scoreHitbox))
+            {
+                IsCurrentlyFlyingTrough = true;
+            }
+            else if (IsCurrentlyFlyingTrough && !Player.PlayerHitbox.IntersectsWith(scoreHitbox))
+            {
+                Player.Score++;
+                IsCurrentlyFlyingTrough = false;
+                
+                
+            }
+        }
+
+
         // ZMENNA BAREV TRUBEK PODLE DOSAZENEHO SCORE
         public static void CheckChangeDifficulty(object sender, EventArgs e)
         {
@@ -147,6 +178,11 @@ namespace HappyBird
                 
                 Canvas.SetLeft(pipe,  currentX - _moveSpeed);
             }
+            
+            double ScoringcurrentX = Canvas.GetLeft(_scoreHitbox);
+            Canvas.SetLeft(_scoreHitbox,  ScoringcurrentX - _moveSpeed);
+            
+            
         }
         public static void ResetYPosition(object sender, EventArgs e)
         {
@@ -165,6 +201,11 @@ namespace HappyBird
             _pipeBottomExit.Fill = _color;
             Canvas.SetLeft(_pipeBottomWallHolder, 250);
             _pipeBottomWallHolder.Fill = _color;
+            
+            
+            Canvas.SetLeft(_scoreHitbox, 250);
+
+
         }
         
         public static void ChangeHeight(object sender, EventArgs e)
@@ -190,7 +231,11 @@ namespace HappyBird
                     _pipeBottom.Height =  pipeBottomHeight * PieceOfPipeHeightInPixels * _difficultyIndex;
                     Canvas.SetTop(_pipeBottom, 400 - _pipeBottom.Height - PieceOfPipeEndHeightInPixels );
                     Canvas.SetTop(_pipeBottomExit,400 - _pipeBottom.Height - 2 * PieceOfPipeEndHeightInPixels);
-                    //Canvas.SetBottom(_pipeBottomExit, 2*PieceOfPipeEndHeightInPiexels + _pipeBottomWallHolder.Height);
+
+                    _scoreHitbox.Height = 400 - 4 *PieceOfPipeEndHeightInPixels - _pipeTop.Height - _pipeBottom.Height;
+                    Canvas.SetTop(_scoreHitbox , 2*PieceOfPipeEndHeightInPixels + _pipeTop.Height);
+                    
+
                     
                     
                     
