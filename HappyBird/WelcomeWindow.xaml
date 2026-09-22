@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HappyBird"
         mc:Ignorable="d"
-        Title="Flappy Bird - Welcome" Height="450" Width="250">
+        Title="HappyBird - Welcome" Height="450" Width="250">
     <Grid>
         <Image Name="flappyBird" Source="C:\Users\sazimma\Downloads\images.png" Height="100" Width="100" RenderTransformOrigin="0.377,-0.208" Margin="75,20,75,314"/>
-        <TextBlock FontWeight="Bold"  FontSize="30" HorizontalAlignment="Center" Margin="0,97,0,0" TextWrapping="Wrap" Text="Flappy Bird" VerticalAlignment="Top"/>
-        <TextBlock FontWeight="Bold"  FontSize="20" HorizontalAlignment="Center" Margin="0,141,0,0" TextWrapping="Wrap" Text="Sazima Mateo" VerticalAlignment="Top"/>
-        <TextBlock FontWeight="Bold"  FontSize="15" HorizontalAlignment="Center" Margin="0,163,0,0" TextWrapping="Wrap" Text="I3.C" VerticalAlignment="Top"/>
-        <Button Content="Play" HorizontalAlignment="Center" VerticalAlignment="Center" Height="32" Width="102" Click="Button_Click"/>
+        <TextBlock FontWeight="ExtraBold"  FontSize="30" HorizontalAlignment="Center" Margin="0,97,0,0" TextWrapping="Wrap" Text="HAPPY BIRD" VerticalAlignment="Top"/>
+        <TextBlock FontWeight="ExtraBold"  FontSize="20" HorizontalAlignment="Center" Margin="0,141,0,0" TextWrapping="Wrap" Text="Sazima Mateo" VerticalAlignment="Top"/>
+        <TextBlock FontWeight="ExtraBold"  FontSize="15" HorizontalAlignment="Center" Margin="0,163,0,0" TextWrapping="Wrap" Text="I3.C" VerticalAlignment="Top"/>
+        <Button Content="PLAY" FontSize="15" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="32" Width="102" Click="Button_Click"/>
     </Grid>
 </Window>
