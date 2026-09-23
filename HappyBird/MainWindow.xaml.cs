@@ -71,7 +71,6 @@ namespace HappyBird
                 
                 Window scoreWindow = new ScoreWindow();
                 scoreWindow.Show();
-
                 Close();
             }
             

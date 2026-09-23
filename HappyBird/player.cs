@@ -36,7 +36,9 @@ namespace HappyBird
                 else
                     _birdCurrentFrame++;
 
-                PlayerCharacter.Source = new ImageSourceConverter().ConvertFromString("../../source/images/Bird/yellow/tile00" + _birdCurrentFrame.ToString() + ".png") as ImageSource;
+                string imagePath = $"pack://application:,,,/source/images/Bird/yellow/tile00{_birdCurrentFrame}.png";
+                PlayerCharacter.Source = new BitmapImage(new Uri(imagePath));
+                
                 _birdAnimationTick = 0;
             }
         }

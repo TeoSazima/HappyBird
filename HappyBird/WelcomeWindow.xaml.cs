@@ -24,11 +24,7 @@ namespace HappyBird
         public WelcomeWindow()
         {
             InitializeComponent();
-
-            if (!File.Exists("Leaderboards.json"))
-            {
-                File.Create("Leaderboards.json").Close();
-            }
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
